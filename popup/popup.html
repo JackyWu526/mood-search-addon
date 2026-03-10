@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>心情搜索</title>
+  <link rel="stylesheet" href="../styles/popup.css">
+</head>
+<body>
+  <div class="container">
+    <h1>🎭 今天心情如何？</h1>
+    
+    <div class="mood-selector">
+      <button class="mood-btn" data-mood="happy" data-color="#FFD700">
+        <span class="emoji">😊</span>
+        <span class="label">开心</span>
+      </button>
+      <button class="mood-btn" data-mood="calm" data-color="#87CEEB">
+        <span class="emoji">😌</span>
+        <span class="label">平静</span>
+      </button>
+      <button class="mood-btn" data-mood="excited" data-color="#FF6B6B">
+        <span class="emoji">🤩</span>
+        <span class="label">兴奋</span>
+      </button>
+      <button class="mood-btn" data-mood="sad" data-color="#9370DB">
+        <span class="emoji">😢</span>
+        <span class="label">难过</span>
+      </button>
+      <button class="mood-btn" data-mood="focused" data-color="#20B2AA">
+        <span class="emoji">🤔</span>
+        <span class="label">专注</span>
+      </button>
+      <button class="mood-btn" data-mood="tired" data-color="#DDA0DD">
+        <span class="emoji">😴</span>
+        <span class="label">疲惫</span>
+      </button>
+    </div>
+    
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="输入搜索内容..." />
+      <button id="searchBtn" class="search-btn">🔍 搜索</button>
+    </div>
+    
+    <div class="mood-tips" id="moodTips">
+      <p>选择一个心情，让搜索更懂你～</p>
+    </div>
+    
+    <div class="history" id="historySection">
+      <h3>📜 搜索历史</h3>
+      <ul id="historyList"></ul>
+      <button id="clearHistory" class="clear-btn">清空历史</button>
+    </div>
+  </div>
+  
+  <script src="popup.js"></script>
+</body>
+</html>
