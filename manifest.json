@@ -33,10 +33,7 @@
   "browser_specific_settings": {
     "gecko": {
       "id": "mood-search@jackywu526.github.io",
-      "strict_min_version": "79.0",
-      "data_collection_permissions": {
-        "collects_data": false
-      }
+      "strict_min_version": "79.0"
     }
   }
 }
