@@ -5,12 +5,10 @@
   "description": "根据你的心情定制搜索体验，让搜索更懂你",
   "author": "JackyWu526",
   "homepage_url": "https://github.com/JackyWu526/mood-search-addon",
-  
   "icons": {
     "48": "icons/icon-48.png",
     "96": "icons/icon-96.png"
   },
-  
   "browser_action": {
     "default_icon": {
       "48": "icons/icon-48.png",
@@ -19,17 +17,14 @@
     "default_title": "心情搜索",
     "default_popup": "popup/popup.html"
   },
-  
   "permissions": [
     "tabs",
     "activeTab",
     "storage"
   ],
-  
   "background": {
     "scripts": ["background/background.js"]
   },
-  
   "browser_specific_settings": {
     "gecko": {
       "id": "mood-search@jackywu526.github.io",

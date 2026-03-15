@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // 加载当前心情
 function loadCurrentMood() {
-  chrome.storage.local.get(['currentMood'], (result) => {
+  browser.storage.local.get(['currentMood']).then((result) => {
     if (result.currentMood) {
       currentMood = result.currentMood;
       applyMoodTheme(currentMood);
@@ -166,7 +166,7 @@ function setupEventListeners() {
       currentMood = mood;
       
       // 保存心情
-      chrome.storage.local.set({ currentMood: mood });
+      browser.storage.local.set({ currentMood: mood });
       
       // 应用主题
       applyMoodTheme(mood);
@@ -212,7 +212,7 @@ function performSearch() {
 
 // 保存搜索历史
 function saveHistory(query, mood) {
-  chrome.storage.local.get(['searchHistory'], (result) => {
+  browser.storage.local.get(['searchHistory']).then((result) => {
     let history = result.searchHistory || [];
     
     // 添加到开头
@@ -225,14 +225,14 @@ function saveHistory(query, mood) {
     // 只保留最近 20 条
     history = history.slice(0, 20);
     
-    chrome.storage.local.set({ searchHistory: history });
+    browser.storage.local.set({ searchHistory: history });
     loadHistory();
   });
 }
 
 // 加载搜索历史
 function loadHistory() {
-  chrome.storage.local.get(['searchHistory'], (result) => {
+  browser.storage.local.get(['searchHistory']).then((result) => {
     const history = result.searchHistory || [];
     const historyList = document.getElementById('historyList');
     
@@ -257,6 +257,6 @@ function loadHistory() {
 
 // 清空历史
 function clearHistory() {
-  chrome.storage.local.set({ searchHistory: [] });
+  browser.storage.local.set({ searchHistory: [] });
   loadHistory();
 }
