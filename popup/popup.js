@@ -8,7 +8,7 @@ const moodConfig = {
     bgGradient: 'linear-gradient(135deg, #f5af19 0%, #f12711 100%)',
     recommendations: [
       { title: '🎬 搞笑视频合集', url: 'https://www.youtube.com/results?search_query=funny+videos' },
-      { title: '😂  Reddit 笑话', url: 'https://www.reddit.com/r/funny/' },
+      { title: '😂 Reddit 笑话', url: 'https://www.reddit.com/r/funny/' },
       { title: '🎮 休闲小游戏', url: 'https://poki.com/' },
       { title: '🎵 欢快音乐歌单', url: 'https://open.spotify.com/playlist/37i9dQZF1DXdPec7aLTmlC' },
       { title: '🐱 可爱动物视频', url: 'https://www.youtube.com/results?search_query=cute+animals' }
@@ -111,7 +111,10 @@ function applyMoodTheme(mood) {
   if (!config) return;
   
   document.body.style.background = config.bgGradient;
-  document.getElementById('moodTips').innerHTML = `<p>${config.tips}</p>`;
+  
+  // 安全地更新提示文字
+  const tipsEl = document.getElementById('moodTips');
+  tipsEl.textContent = config.tips;
   
   // 更新推荐内容
   renderRecommendations(config.recommendations);
@@ -125,21 +128,33 @@ function applyMoodTheme(mood) {
   });
 }
 
-// 渲染推荐内容
+// 渲染推荐内容（安全方式）
 function renderRecommendations(recommendations) {
   const container = document.getElementById('recommendations');
   if (!container) return;
   
-  container.innerHTML = `
-    <h3>✨ 为你推荐</h3>
-    <div class="recommendation-list">
-      ${recommendations.map(item => `
-        <a href="${item.url}" target="_blank" class="recommendation-item">
-          ${item.title}
-        </a>
-      `).join('')}
-    </div>
-  `;
+  // 清空容器
+  container.innerHTML = '';
+  
+  // 创建标题
+  const title = document.createElement('h3');
+  title.textContent = '✨ 为你推荐';
+  container.appendChild(title);
+  
+  // 创建列表
+  const list = document.createElement('div');
+  list.className = 'recommendation-list';
+  
+  recommendations.forEach(item => {
+    const link = document.createElement('a');
+    link.href = item.url;
+    link.target = '_blank';
+    link.className = 'recommendation-item';
+    link.textContent = item.title;
+    list.appendChild(link);
+  });
+  
+  container.appendChild(list);
 }
 
 // 设置事件监听
@@ -226,17 +241,16 @@ function loadHistory() {
       return;
     }
     
-    historyList.innerHTML = history.map(item => {
-      const moodEmoji = item.mood ? moodConfig[item.mood]?.emoji || '😊' : '😊';
-      return `<li data-query="${item.query}">${moodEmoji} ${item.query}</li>`;
-    }).join('');
-    
-    // 点击历史项重新搜索
-    historyList.querySelectorAll('li').forEach(li => {
+    historyList.innerHTML = '';
+    history.forEach(item => {
+      const li = document.createElement('li');
+      li.textContent = item.query;
+      li.dataset.query = item.query;
       li.addEventListener('click', () => {
-        document.getElementById('searchInput').value = li.dataset.query;
+        document.getElementById('searchInput').value = item.query;
         performSearch();
       });
+      historyList.appendChild(li);
     });
   });
 }
