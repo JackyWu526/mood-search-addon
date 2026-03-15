@@ -41,5 +41,10 @@
       "id": "mood-search@jackywu526.github.io",
       "strict_min_version": "57.0"
     }
+  },
+  
+  "data_collection_permissions": {
+    "collects_data": false,
+    "description": "此扩展不收集任何用户数据"
   }
 }
