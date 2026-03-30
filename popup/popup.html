@@ -8,7 +8,10 @@
 </head>
 <body>
   <div class="container">
-    <h1>🎭 今天心情如何？</h1>
+    <div class="header">
+      <h1>🎭 今天心情如何？</h1>
+      <div id="proBadge" class="pro-badge" style="display:none;">🌟 Pro</div>
+    </div>
     
     <div class="mood-selector">
       <button class="mood-btn" data-mood="happy" data-color="#FFD700">
@@ -54,6 +57,60 @@
       <h3>📜 搜索历史</h3>
       <ul id="historyList"></ul>
       <button id="clearHistory" class="clear-btn">清空历史</button>
+    </div>
+  </div>
+  
+  <!-- Pro 功能弹窗 -->
+  <div id="proModal" class="pro-modal">
+    <div class="pro-modal-content">
+      <button id="closeProModal" class="close-btn">×</button>
+      
+      <div class="pro-header">
+        <h2>🌟 升级 Pro 版本</h2>
+        <p>解锁全部高级功能</p>
+      </div>
+      
+      <div class="pro-features">
+        <div class="feature-item">
+          <span class="feature-icon">✅</span>
+          <span>全部推荐内容（每种心情 8 条）</span>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">✅</span>
+          <span>心情统计和日历</span>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">✅</span>
+          <span>自定义推荐链接</span>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">✅</span>
+          <span>云同步功能</span>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">✅</span>
+          <span>优先技术支持</span>
+        </div>
+      </div>
+      
+      <div class="pro-pricing">
+        <div class="price-tag">
+          <span class="price">¥29.9</span>
+          <span class="period">/ 年</span>
+        </div>
+        <p class="price-desc">首年优惠，后续 ¥49.9/年</p>
+      </div>
+      
+      <div class="pro-activation">
+        <h3>已有激活码？</h3>
+        <input type="text" id="proCodeInput" placeholder="输入激活码（PRO-XXXX）" />
+        <button id="activateProBtn" class="activate-btn">激活 Pro</button>
+      </div>
+      
+      <div class="pro-footer">
+        <a href="#" id="buyProBtn" class="buy-link">💳 购买 Pro 版本</a>
+        <p class="guarantee">🔒 安全支付 · 7 天无理由退款</p>
+      </div>
     </div>
   </div>
   
